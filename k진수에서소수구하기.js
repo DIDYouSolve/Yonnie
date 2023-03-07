@@ -1,7 +1,6 @@
 function isPrime(num) {
     if (num === 2)
         return true;
-
     for (let i = 2; i < num; i++) {
         if (num % i === 0) {
             return false;
@@ -11,16 +10,11 @@ function isPrime(num) {
 }
 
 function solution(n, k) {
-    let num = n.toString(k)
-    let prime = String(num).split(0)
-    let ans = 0
-
-    for (let i = 0; i < prime.length; i++) {
-        if (isPrime(prime[i])) {
-            ans++
-        }
+    let num = n.toString(k).split(0).filter(e => isPrime(e))
+    for (let i = num.length; i > 0; i--) {
+        if (num[i] === "" || num[i] === "1" || num[i] === "0") num.splice(i, 1)
     }
-    return ans
+    return num.length
 }
 
-console.log(solution(110011, 10))
+console.log(solution(437674, 3))
